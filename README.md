@@ -24,12 +24,12 @@
 ### To clone the project on Linux(use Git Bash Software on Windows):
 1.Make a Directory and name it whatever you want `mkdir project`<br/><br/>
 2.Go to the Directory  `cd project`<br/><br/>
-3.Clone This Project git clone `https://github.com/manqoba-SA/Django-Students-Ecommerce-`<br/><br/>
+3.Clone This Project `git clone https://github.com/manqoba-SA/Django-Students-Ecommerce-`<br/><br/>
 4.Go to Project Directory `cd Django-Students-Ecommerce-`<br/><br/>
-5.Create a Virtual Environment `python -m venv venv`<br/><br/>
-6.Activate Virtual Environment: `source venv/bin/activate` or on Windows `source venv/scripts/activate`<br/><br/>
+5.Create a Virtual Environment `virtualenv .`<br/><br/>
+6.Activate Virtual Environment: `source bin/activate` or on Windows `source scripts/activate`<br/><br/>
 7.Install Requirements Package: `pip install -r requirements.txt`<br/><br/>
-8.Make Migrations for all apps: `python manage.py makemigrations GetItApp` ..NOTE:there are two more apps you must make migrations for namely cart and orders<br/><br/>
+8.Make Migrations for two apps: `python manage.py makemigrations GetItApp` then `python manage.py makemigrations orders`<br/><br/>
 9.Migrate Database: `python manage.py migrate`<br/><br/>
-10.Create Super User `python manage.py createsuperuser`<br/><br/>
-11.Finally Run The Project python `manage.py runserver`<br/><br/>
+10.Create Super User: `python manage.py createsuperuser`<br/><br/>
+11.Finally Run The Project `python manage.py runserver`<br/><br/>
