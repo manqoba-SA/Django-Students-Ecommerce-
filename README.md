@@ -24,7 +24,7 @@
 ### To clone the project on Linux(use Git Bash Software on Windows):
 1.First Create a Virtual Environment `python -m venv venv`<br/><br/>
 2.Then type `cd venv` To Move To Virtual Environment directory<br/><br/>
-3.Clone This Project git clone `https://github.com/sajib1066/django-ecommerce.git`<br/><br/>
+3.Clone This Project git clone `https://github.com/manqoba-SA/Django-Students-Ecommerce-`<br/><br/>
 4.Activate Virtual Environment: `source bin/activate` or on Windows `source scripts/activate`<br/><br/>
 5.Install Requirements Package: `pip install -r requirements.txt`<br/><br/>
 6.Make Migrations for all apps: `python manage.py makemigrations GetItApp` ..NOTE:there are two more apps you must make migrations for namely cart and orders<br/><br/>
