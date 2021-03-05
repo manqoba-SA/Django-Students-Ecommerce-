@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GETIT |DANKOO!{% endblock %}
+{% block content %}
+<div class="container created">
+    <div class="block-created">
+        <h2 class="text-center"><strong>Thank You<i class="fa fa-hand-peace-o"></i></strong></h2>
+        <p class="text-center"></i>Thank You Awez <span class="text-colored"><strong>{{order.name}}</strong></span> we receive your order!</p>
+        <div class='row info'>
+            <div class="col-md-12 align-self-center">
+                <h4 class="text-center"><strong> Information</strong></h4>            
+                <p class="text-center"><span class="info-text"> Number:</span> {{order.id}}</p>
+                <p class="text-center"><span class="info-text">Building:</span> {{order.building}}</p>
+                <p class="text-center"><span class="info-text">Room Number:</span> {{order.room_number}}</p>
+                <p class="text-center"><span class="info-text">Estimated Delivery Time:</span> {{order.delivery}}</p>          
+                <p class="text-center"><span class="info-text">NOTE!:</span> At Herb and Minller we deliver between 9am to 8pm and Quantile between 6am to 00:00</p>          
+            </div>
+        </div>
+    </div>
+<footer class="info">
+    <div class="container">
+        <small><strong>&copy2021 GETIT</strong></small><br>
+        <small><strong>Contact Us:</strong></small><br>
+        <a href="mailto:getitofficials@gmail.com"><small class="spacing"><strong><i class="fa fa-envelope spacing"></i>getitofficials@gmail.com</strong></small></a>
+        <a href="tel:0643216072"><small class="spacing"><strong><i class="fa fa-whatsapp spacing"></i>064 321 6072</strong></small></a>
+        <a href="tel:+27619618183"><small class="spacing"><strong><i class="fa fa-phone spacing"></i>+27619618183</strong></small></a>
+    </div>
+</footer>
+{%endblock%}
