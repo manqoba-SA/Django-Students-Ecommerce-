@@ -4,9 +4,9 @@
 ### Website link: **https://www.resgetit.com/
 
 ### Project Description
-- I developed this project as student studying at University Of Johannersburg for students in my residence to eliminate their challenges in order for them  to be able to have access to essential products which are not provided near by, the  website will allow them to order some products or services and be delivered to them within 10 minutes in which it will eliminate the challenge to go miles to buy general product such as snacks and it will play positive role in decreasing covid19 cases since it will be helping about 1500+ students
--frontend tools: html css bootstrap4 and jquery
--Project backend code can be used for any sort of production
+- I developed this project as student studying at University Of Johannersburg for students in my residence to eliminate their challenges in order for them  to be able to have access to essential products which are not provided near by, the  website will allow them to order some products or services and be delivered to them within 10 minutes in which it will eliminate the challenge to go miles to buy general product such as snacks and it will play positive role in decreasing covid19 cases since it will be helping about 1500+ students<br/>
+-frontend tools: html css bootstrap4 and jquery<br/>
+-Project backend code can be used for any sort of production<br/>
 -Project frontend code can not be used in any sort of production since the code is licensed and working in existing production 
 
 
