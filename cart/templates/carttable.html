@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GETIT |MY_CART {% endblock %}
+{% block content %}
+<!--CART content-->
+<div class="container cart-content  animate__animated animate__bounceInDown">
+    <table id="cart" class="table table-hover table-condensed">
+              <thead>
+              <tr>
+                <th style="width:50%">Product</th>
+                <th style="width:10%">Price</th>
+                <th style="width:8%">Quantity</th>
+                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:10%"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in cart %}
+              {% with product=item.product %}
+              <tr>
+                <td>
+                  <div class="row">
+                    <div class="col-sm-2 hidden-xs submit">
+                      <img src="{% if product.image %}{{ product.image.url}}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="..." class="img-responsive cart-img-size"/>
+                    </div>
+                    <div class="col-sm-12 product-name">
+                      <h4 class="nomargin">{{product.name}}</h4>
+                    </div>
+                  </div>
+                </td>
+                <td data-th="Price">R{{item.price}}</td>
+                <td data-th="Quantity">
+                  <form action="{% url 'cart:cart_add' product.id %}" class="actions d-flex" data-th="" method="post">
+                    {% csrf_token %}
+                    {{ item.update_quantity_form.quantity }}
+                    {{ item.update_quantity_form.override }}
+                    <button type="submit" value="Update" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>  
+                  </form>
+                </td>
+                <td data-th="Subtotal" class="">R{{item.total_price}}</td>
+                <td class="actions" data-th="Remove">
+                  <form action="{% url 'cart:cart_remove' product.id %}"method="post" class="submit">
+                    <button type="submit" value="Remove" class="btn btn-outline-danger btn-sm"><i class="fa fa-trash-o"></i></button> 
+                    {% csrf_token %}
+                  </form>               
+                </td>
+              </tr>
+            </tbody>
+            {% endwith %}
+							{% endfor %}
+            <tfoot>
+              <tr>
+                <td><a href="{% url 'GetItApp:products' %}" class="btn btn-outline-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                <td colspan="2" class="hidden-xs"></td>
+                <td class="hidden-xs text-center"><strong>Total Price: R{{cart.get_total_price}}</strong></td>
+                <td><a href="{% url 'orders:order_create' %}" class="btn btn-outline-dark btn-checkout">Checkout <i class="fa fa-angle-right"></i></a></td>
+              </tr>
+            </tfoot>
+          </table>       
+  </div> 
+  {%endblock%}
