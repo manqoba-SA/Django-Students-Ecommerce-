@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GETIT |SEARCH RESULTS {% endblock %}
+{% block content %}
+<section class="products-page">
+    <h3 class="text-center">All products</h3>      
+    <div class="line-break"></div>
+        <div class="container">
+          <div class="d-flex">
+            <div class="searchbar d-flex">
+                <form class="searchbar d-flex" action="{% url 'GetItApp:search' %}" method="GET" accept-charset="utf-8" value="{{request.GET.q}}">
+                    <input class="search_input" value="{{request.GET.q}}" type="text" name="q" placeholder="Search products...">
+                    <button type="submit" class="search_icon" name="submit" value="Search"><i class="fa fa-search"></i></button>
+                  </form>
+            </div>
+          </div>
+        </div>
+    <!-- ===============product Card ===============-->
+    {% if submitbutton == 'Search' and request.GET.q != '' %}
+    {% if results %}
+    <div class="container">
+        <h4 style="text-align: center;">Results for <b style="color: #46B3E6;">{{ request.GET.q }}</b></h4>
+        <div class="row">
+            {% for result in results.all %}
+            <div class="col-sm-4 my-4 animate__animated animate__bounceIn">
+                <div class="card my-card" style="width: 100%;;">
+                    <img src="{% if result.image %}{{ result.image.url }}{% else %}{% static 'img/no_image.png'%}{% endif %}" class="card-img-top product-image" alt="...">
+                    <div class="card-body">
+                        <h5>{{result.name}}<small class="availability"> Available Now</small></h5>
+                        <p>R{{result.price}}<small> {{result.quantity}}</small></p>
+                        <div class="row"> 
+                            {% if result.service or result.is_technology %}
+                            <a href="{{ result.get_absolute_url }}" class="cart-btn"><button type="button" class="btn btn-view">View</button></a>
+                            {%else%}
+                            <a href="{{ result.get_absolute_url }}" class="cart-btn"><button type="button" class="btn btn-view">View</button></a>
+                            <form class="cart-btn" action="{% url "cart:cart_add" result.id %}" method="post">    
+                                <div style='display:none'>{{ cart_product_form }}</div>      
+                                <div class="cart-btn"><button type="submit" class="btn btn-add">Add to Cart</button></div>                                
+                            {% csrf_token %}
+                        </form>
+                        {%endif%}
+                        </div>    
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+            {% else %}
+            <br>
+            <br>
+             <h4 style="width: 100%; color: #ff3333" class="text-center">Haiboo!🤒🤥 sorry we did not find your search results</h4>
+             {% endif %}
+             {% endif %}
+        </div>
+    </div>                        
+</section>
+{%endblock%}

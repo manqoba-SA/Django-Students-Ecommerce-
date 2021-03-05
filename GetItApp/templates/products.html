@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} GETIT |PRODUCTS {% endblock %}
+{% block content %}
+<section class="products-page">
+    <h3 class="text-center">Products</h3>      
+    <div class="line-break"></div>
+        <div class="container">
+          <div class="d-flex">
+            <div class="searchbar d-flex">
+                <form class="searchbar d-flex" action="{% url 'GetItApp:search' %}" method="GET" accept-charset="utf-8" value="{{request.GET.q}}">
+                    <input class="search_input" value="{{request.GET.q}}" type="text" name="q" placeholder="Search products...">
+                    <button type="submit" class="search_icon" name="submit" value="Search"><i class="fa fa-search"></i></button>
+                  </form>
+            </div>
+          </div>
+        </div>
+    <!-- ===============product Card ===============-->  
+    <div class="container">
+        <div class="row">
+            {% for product in products %}
+            <div class="col-sm-4 my-4 animate__animated animate__bounceIn">
+                <div class="card my-card" style="width: 100%;;">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png'%}{% endif %}" class="card-img-top product-image" alt="...">
+                    <div class="card-body">
+                        <h5>{{product.name}}<small class="availability"> Available Now</small></h5>
+                        <p>R{{product.price}}<small> {{product.quantity}}</small></p>
+                        <div class="row"> 
+                            {% if product.service or product.is_technology %}
+                            <a href="{{ product.get_absolute_url }}" class="cart-btn"><button type="button" class="btn btn-view">View</button></a>
+                            {%else%}
+                            <a href="{{ product.get_absolute_url }}" class="cart-btn"><button type="button" class="btn btn-view">View</button></a>
+                            <form class="cart-btn" action="{% url "cart:cart_add" product.id %}" method="post">    
+                                <div style='display:none'>{{ cart_product_form }}</div>      
+                                <div class="cart-btn"><button type="submit" class="btn btn-add">Add to Cart</button></div>
+                                {% csrf_token %}
+                            </form> 
+                            {%endif%}
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>                        
+</section>
+{%endblock%}

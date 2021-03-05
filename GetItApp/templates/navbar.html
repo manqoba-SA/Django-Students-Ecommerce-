@@ -1,0 +1,57 @@
+<!---NAVIGATION-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light bg-mycolor sticky-top">
+    <a class="navbar-brand" href="{%url 'GetItApp:home'%}">GETIT</a>
+    <button class="navbar-toggler responsive-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class='cart-responsive'>
+      <a href="{% url 'cart:cart_table' %}"><i class='fa fa-shopping-cart fa-lg d-flex'aria-hidden="true">
+        {% with total_items=cart|length %}
+        {% if total_items > 0 %}
+        <span class="cart-count">{{ total_items }}</span>
+        {% else %}
+        {% endif %}
+        {% endwith %}
+      </i></a>
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{%url 'GetItApp:home'%}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'GetItApp:products' %}">Shop</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Shop By
+          </a>
+          <div class="dropdown-menu animate__animated animate__animated animate__flipInX" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item"} href="{% url 'GetItApp:products' %}">All Products</a>
+            {% for c in categories %}
+            <a class="dropdown-item" href="{{c.get_absolute_url}}">{{c.name}}</a> 
+            {% endfor %}
+        </li>     
+        <li class="nav-item">
+          {% for c in categories %}
+          {% if c.name == 'Specials' %}
+          <a class="nav-link" href="{{c.get_absolute_url}}">{{c.name}}</a>
+          {%endif%}
+          {%endfor%}
+        </li>
+      </ul>
+      <div class='cart d-flex'>
+        <a href="{% url 'cart:cart_table' %}"><i class='fa fa-shopping-cart fa-lg d-flex'aria-hidden="true">
+          
+          {% with total_items=cart|length %}
+          {% if total_items > 0 %}
+          <span class="cart-count">{{ total_items }}</span>
+          {% else %}
+          <span class="cart-count">0</span>
+          {% endif %}
+          {% endwith %}
+        </i></a>
+      </div>
+    </div>
+  </nav>
+<!---NAVIGATION-->
